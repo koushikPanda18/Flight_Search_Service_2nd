@@ -23,20 +23,17 @@ class CrudRepository{
             });
             return response;
         } catch(error) {
-            error('Something went wrong in crud repo : destroy')
+            console.log('Something went wrong in crud repo : destroy')
             throw{error}
         }
     }
     async get(data){
         try {
-            const response=await this.model.findByPk({
-                where:{
-                    id:data
-                }
-            });
+            console.log("Inside repository layer")
+            const response=await this.model.findByPk(data);
             return response;
         } catch (error) {
-            error('Something went wrong in crud repo : get')
+            console.log('Something went wrong in crud repo : get')
             throw{error}
         }
     }
@@ -45,20 +42,26 @@ class CrudRepository{
             const response=await this.model.findAll()
             return response;
         } catch (error) {
-            error('Something went wrong in crud repo : getAll')
+            console.log('Something went wrong in crud repo : gerAll')
             throw{error}
         }
     }
-    async update(id,data){  //data is an object--{column,value}
+    async update(data){  //data is an object--{column,value}
         try {
-            const response=await this.model.update(data,{
-                where:{
-                    id:id
-                }
-            });
+            // const response=await this.model.update({capacity:data},{
+            //     where:{
+            //         id:id
+            //     }
+            // });
+            console.log(data)
+            const response=await this.model.findByPk(data.id);
+            if(data.capacity) response.capacity=data.capacity;
+            if(data.modelNumber) response.modelNumber=data.modelNumber;
+            await response.save();
             return response;
+            //return response;
         } catch (error) {
-            error('Something went wrong in crud repo : update')
+            console.log('Something went wrong in crud repo : update')
             throw{error}
         }
     }
