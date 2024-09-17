@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const CityRepository=require('../repositories/city-repository');
+const CityRepository=require('../repository/city-repository');
 
 
 const cityRepository=new CityRepository();

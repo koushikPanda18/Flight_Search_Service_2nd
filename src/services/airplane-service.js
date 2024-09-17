@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const AirplaneRepository=require('../repositories/airplane-repository');
+const AirplaneRepository=require('../repository/airplane-repository');
 
 
 const airplaneRepository=new AirplaneRepository();
