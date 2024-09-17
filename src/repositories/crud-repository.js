@@ -4,7 +4,7 @@ class CrudRepository{
     }
     async create(data){
         try {
-            console.log("Inside Repository layer")
+            console.log("Inside Repository layer (Common)")
             console.log(data)
             const response=await this.model.create(data);
             console.log(response)
@@ -42,7 +42,7 @@ class CrudRepository{
             const response=await this.model.findAll()
             return response;
         } catch (error) {
-            console.log('Something went wrong in crud repo : gerAll')
+            console.log('Something went wrong in crud repo : getAll')
             throw{error}
         }
     }

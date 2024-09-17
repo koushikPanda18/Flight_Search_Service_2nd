@@ -45,7 +45,7 @@ async function deleteAirplane(data){
         if(!response){
             throw("Airplane doesnot exist")
         }
-        return airplane;
+        return response;
     } catch (error) {
         console.log(error)
         throw error;

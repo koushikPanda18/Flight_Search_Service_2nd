@@ -1,123 +1,121 @@
-const {airplaneService}=require('../services');
+const {cityService}=require('../services');
 const {StatusCodes}=require('http-status-codes');
 
 /**
- * POST : /airplanes
- * req-body-{modelNumber-Airbus320,capacity-200}
+ * POST : /cities
+ * req-body-{name-Bengaluru}
  */
-async function createAirplane(req,res) {
+async function createCity(req,res) {
     try {
-        console.log("Inside controller layer")
+        console.log("Inside controller layer of city")
         console.log(req.body)
-        const airplane=await airplaneService.createAirplane({
-            modelNumber:req.body.modelNumber,
-            capacity:req.body.capacity
+        const city=await cityService.createCity({
+            name:req.body.name
         })
         return res.status(StatusCodes.CREATED).json({
             success:true,
-            msg:"successfully created an airplane",
-            data:airplane,
+            msg:"successfully created a city",
+            data:city,
             error:{}
         })
     } catch(error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             success:false,
-            msg:"Something went wrong while creating airplane",
+            msg:"Something went wrong while creating city",
             data:{},
             error:{error}
         })
     }
 }
 /**
- * POST : /airplanes/:id
+ * POST : /cities/:id
  * req-body-{}
  */
-async function getAirplanes(req,res) {
+async function getCity(req,res) {
     try {
         console.log("Inside controller layer")
         console.log(req.body)
-        const airplane=await airplaneService.getAirplanes(req.params.id)
+        const city=await cityService.getCity(req.params.id)
         return res.status(StatusCodes.OK).json({
             success:true,
-            msg:"successfully fetched an airplane",
-            data:airplane,
+            msg:"successfully fetched city",
+            data:city,
             error:{}
         })
     } catch(error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             success:false,
-            msg:"Something went wrong while fetching airplane",
+            msg:"Something went wrong while fetching city",
             data:{},
             error:{error}
         })
     }
 }
 /**
- * GET : /airplanes/all
+ * POST : /cities/all
  * req-body-{}
  */
-async function getAllAirplanes(req,res) {
+async function getAllCities(req,res) {
     try {
-        const airplane=await airplaneService.getAllAirplanes()
+        const city=await cityService.getAllCities()
         return res.status(StatusCodes.OK).json({
             success:true,
-            msg:"successfully fetched all airplane",
-            data:airplane,
+            msg:"successfully fetched all cities",
+            data:city,
             error:{}
         })
     } catch(error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             success:false,
-            msg:"Something went wrong while fetching airplanes",
+            msg:"Something went wrong while fetching cities",
             data:{},
             error:{error}
         })
     }
 }
-async function deleteAirplane(req,res) {
+async function deleteCity(req,res) {
     try {
-        const airplane=await airplaneService.deleteAirplane(req.params.id)
+        const city=await cityService.deleteCity(req.params.id)
         return res.status(StatusCodes.OK).json({
             success:true,
-            msg:"successfully deleted an airplane",
-            data:airplane,
+            msg:"successfully deleted a city",
+            data:city,
             error:{}
         })
     } catch(error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             success:false,
-            msg:"Something went wrong while deleting airplane",
+            msg:"Something went wrong while deleting city",
             data:{},
             error:{error}
         })
     }
 }
-async function updateAirplane(req,res) {
+async function updateCity(req,res) {
     try {
-        const airplane=await airplaneService.updateAirplane({
+        const city=await cityService.updateCity({
             id:req.body.id,
-            capacity:req.body.capacity,
-            modelNumber:req.body.modelNumber
+            name:req.body.name
         })
         return res.status(StatusCodes.OK).json({
             success:true,
-            msg:"successfully updated an airplane",
-            data:airplane,
+            msg:"successfully updated a city",
+            data:city,
             error:{}
         })
     } catch(error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             success:false,
-            msg:"Something went wrong while updating airplane",
+            msg:"Something went wrong while updating city",
             data:{},
             error:{error}
         })
     }
 }
 module.exports={
-    createAirplane,
-    getAirplanes,
-    getAllAirplanes,
-    deleteAirplane,
-    updateAirplane
+    createCity,
+    getCity,
+    getAllCities,
+    deleteCity,
+    updateCity
 }
