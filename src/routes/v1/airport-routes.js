@@ -6,7 +6,7 @@ const router=express.Router();
 
 router.post('/',validateCreateRequest,airportController.createAirport);
 router.get('/:id',airportController.getAirports)
-router.get('/all',airportController.getAllAirports)
+router.get('/',airportController.getAllAirports)
 router.delete('/:id',airportController.deleteAirport)
 //router.patch('/',airportController.updateAirplane);
 

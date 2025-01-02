@@ -1,4 +1,5 @@
 const {StatusCodes}=require('http-status-codes');
+const {compareTime}=require("../utils/Helpers/dateTime-Helpers")
 
 function validateCreateRequest(req,res,next){
     if(!req.body.flightNumber){
@@ -64,6 +65,14 @@ function validateCreateRequest(req,res,next){
                 data:{},
                 error:{explanation:"totalSeats not found in incomming request"}
         })
+    }
+    if(!compareTime(req.body.arivalTime,req.body.departureTime)){
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            success:false,
+            msg:"Something went wrong while creating flight",
+            data:{},
+            error:{explanation:"arrival time cannot be less than departure time"}
+    })
     }
     next();
 }
