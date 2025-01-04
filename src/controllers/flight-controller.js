@@ -90,8 +90,33 @@ async function getFlight(req,res) {
     }
 }
 
+
+async function updateSeats(req,res) {
+    try {
+        console.log("Inside controller layer")
+        const response=await flightService.updateSeats({
+            flightId:req.params.id,
+            seats:req.body.seats,
+            dec:req.body.dec
+        })
+        return res.status(StatusCodes.OK).json({
+            success:true,
+            msg:"successfully updated seat for a flight",
+            data:response,
+            error:{}
+        })
+    } catch(error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            success:false,
+            msg:"Something went wrong while updateing seats",
+            data:{},
+            error:{error}
+        })
+    }
+}
 module.exports={
     createFlight,
     getAllflights,
-    getFlight
+    getFlight,
+    updateSeats
 }

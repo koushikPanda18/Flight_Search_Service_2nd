@@ -77,7 +77,19 @@ function validateCreateRequest(req,res,next){
     next();
 }
 
+function vatidateUpdateSeatsRequest(req,res,next){
+    if(!req.body.seats){
+        return res.status(StatusCodes.BAD_REQUEST).json({
+                success:false,
+                msg:"Something went wrong while updating seats",
+                data:{},
+                error:{explanation:"Seats not found in incomming request"}
+        })
+    }
+    next();
+}
 
 module.exports={
-    validateCreateRequest
+    validateCreateRequest,
+    vatidateUpdateSeatsRequest
 }

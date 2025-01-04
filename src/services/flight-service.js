@@ -63,8 +63,20 @@ async function getFlight(id) {
     }
 }
 
+async function updateSeats(data) {
+    try {
+        console.log('Inside service layer')
+        const response=await flightRepository.updateRemainingSeats(data.flightId, data.seats, data.dec);
+        return response;
+    } catch (error) {
+        console.log(error)
+        throw error;
+    }
+}
+
 module.exports={
     createFlight,
     getAllflights,
     getFlight,
+    updateSeats
 };
