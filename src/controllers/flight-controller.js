@@ -65,7 +65,33 @@ async function getAllflights(req,res) {
     }
 }
 
+/**
+ * GET : /flights/:id
+ * req-body-{}
+ */
+async function getFlight(req,res) {
+    try {
+        console.log("Inside controller layer")
+        console.log(req.body)
+        const flight=await flightService.getFlight(req.params.id)
+        return res.status(StatusCodes.OK).json({
+            success:true,
+            msg:"successfully fetched a flight",
+            data:flight,
+            error:{}
+        })
+    } catch(error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            success:false,
+            msg:"Something went wrong while fetching flight",
+            data:{},
+            error:{error}
+        })
+    }
+}
+
 module.exports={
     createFlight,
     getAllflights,
+    getFlight
 }

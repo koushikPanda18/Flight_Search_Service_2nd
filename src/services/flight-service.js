@@ -17,6 +17,7 @@ async function createFlight(data){
         throw error;
     }
 }
+
 async function getAllflights(query) {
     let customfilter={};
     const endingTripTime="23:59:00";
@@ -50,7 +51,20 @@ async function getAllflights(query) {
         throw error;
     }
 }
+
+async function getFlight(id) {
+    try {
+        console.log('Inside service layer')
+        const flight=await flightRepository.get(id);
+        return flight;
+    } catch (error) {
+        console.log(error)
+        throw error;
+    }
+}
+
 module.exports={
     createFlight,
     getAllflights,
+    getFlight,
 };

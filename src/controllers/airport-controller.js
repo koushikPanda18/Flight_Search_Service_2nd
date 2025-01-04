@@ -76,6 +76,7 @@ async function getAllAirports(req,res) {
         })
     }
 }
+
 async function deleteAirport(req,res) {
     try {
         const airport=await airportService.deleteAirport(req.params.id)
